@@ -683,12 +683,26 @@
       <h2>Contact Us</h2>
       <p style="margin-bottom: 30px;"> Let's work together & Get in touch with us.</p>
       <div class="contact-buttons">
-        <a href="mailto:sudee6603@gmail.com" class="button-link email-button">
-          <i class="fas fa-envelope"></i> Email Us
-        </a>
-        <a href="https://www.instagram.com/black.andstone?igsh=cm8yZWt3aHMzNnJ1" class="button-link instagram-button" target="_blank" rel="noopener">
-          <i class="fab fa-instagram"></i> Instagram
-        </a>
+        <a href="mailto:sudee6603@gmail.com"
+   class="button-link email-button"
+   onclick="gtag('event', 'click', {
+     event_category: 'engagement',
+     event_label: 'Email Click'
+   });">
+  <i class="fas fa-envelope"></i> Email Us
+</a>
+
+       <a href="https://www.instagram.com/black.andstone?igsh=cm8yZWt3aHMzNnJ1"
+   class="button-link instagram-button"
+   target="_blank"
+   rel="noopener"
+   onclick="gtag('event', 'click', {
+     event_category: 'engagement',
+     event_label: 'Instagram Button'
+   });">
+  <i class="fab fa-instagram"></i> Instagram
+</a>
+ 
       </div>
     </div>
   </section>
