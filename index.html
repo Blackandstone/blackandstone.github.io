@@ -197,8 +197,8 @@
       box-shadow: 0 5px 15px rgba(0,0,0,0.3);
       cursor: pointer;
       filter: grayscale(20%);
-      aspect-ratio: 1/1;
-      object-fit: cover;
+      aspect-ratio: auto;
+      object-fit: contain;
     }
     .gallery img.visible {
       opacity: 1;
@@ -243,13 +243,14 @@
       border-radius: 15px;
       overflow: hidden;
       box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-      aspect-ratio: 3/4;
+      aspect-ratio: auto;
       transition: transform 0.4s ease;
+      cursor: pointer;
     }
     .portfolio-image-portrait img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
+      object-fit: contain;
       transition: transform 0.4s ease;
     }
     .portfolio-image-portrait:hover img {
@@ -268,13 +269,14 @@
       border-radius: 15px;
       overflow: hidden;
       box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-      aspect-ratio: 3/2;
+      aspect-ratio: auto;
       transition: transform 0.4s ease;
+      cursor: pointer;
     }
     .portfolio-landscape-image img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
+      object-fit: contain;
       transition: transform 0.4s ease;
     }
     .portfolio-landscape-image:hover img {
@@ -338,6 +340,7 @@
       margin: 20px 0;
       box-shadow: 0 10px 30px rgba(0,0,0,0.3);
       transition: transform 0.5s ease, box-shadow 0.5s ease;
+      cursor: pointer;
     }
     #founder img:hover {
       transform: perspective(1000px) rotateX(5deg) rotateY(5deg);
@@ -441,6 +444,45 @@
     h3 {
       color: var(--white-subheading) !important;
     }
+    
+    /* Image Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      overflow: auto;
+      animation: fadeIn 0.3s;
+    }
+    .modal-content {
+      display: block;
+      margin: auto;
+      max-width: 90%;
+      max-height: 90%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 10px;
+    }
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 35px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+    .close:hover {
+      color: var(--accent-color);
+    }
+    
     @keyframes scroll {
       0% { transform: translate(0,0); }
       100% { transform: translate(-100%,0); }
@@ -504,9 +546,11 @@
       }
       .portfolio-image-portrait {
         width: calc(50% - 10px);
+        aspect-ratio: auto;
       }
       .portfolio-landscape-image {
         width: 100%;
+        aspect-ratio: auto;
       }
       .services-box, .about-box, .portfolio-box {
         padding: 20px;
@@ -521,6 +565,11 @@
       }
       .minimal-text {
         font-size: 22px;
+      }
+      .gallery img {
+        aspect-ratio: auto;
+        height: auto;
+        object-fit: contain;
       }
     }
     @media (max-width: 480px) {
@@ -577,10 +626,10 @@
 
   <h2 class="gallery-heading">THROUGH THE LENS</h2>
   <div class="gallery">
-    <img src="img1.jpg" alt="Branding photography example - Minimal product shot" loading="lazy">
-    <img src="img2.jpg" alt="Portrait photography example - Professional headshot" loading="lazy">
-    <img src="img3.jpg" alt="Social media content example - Instagram post design" loading="lazy">
-    <img src="img4.jpg" alt="Commercial photography example - Fashion editorial" loading="lazy">
+    <img src="img1.jpg" alt="Branding photography example - Minimal product shot" loading="lazy" class="gallery-image">
+    <img src="img2.jpg" alt="Portrait photography example - Professional headshot" loading="lazy" class="gallery-image">
+    <img src="img3.jpg" alt="Social media content example - Instagram post design" loading="lazy" class="gallery-image">
+    <img src="img4.jpg" alt="Commercial photography example - Fashion editorial" loading="lazy" class="gallery-image">
   </div>
 
   <section class="section" id="services">
@@ -641,16 +690,16 @@
       
       <div class="portfolio-images-row">
         <div class="portfolio-image-portrait">
-          <img src="img6.jpg" alt="Canon Powershot SX170 IS photography sample - Minimal composition" loading="lazy">
+          <img src="img6.jpg" alt="Canon Powershot SX170 IS photography sample - Minimal composition" loading="lazy" class="portfolio-image">
         </div>
         <div class="portfolio-image-portrait">
-          <img src="img8.jpg" alt="Portrait photography example - Natural lighting" loading="lazy">
+          <img src="img8.jpg" alt="Portrait photography example - Natural lighting" loading="lazy" class="portfolio-image">
         </div>
         <div class="portfolio-image-portrait">
-          <img src="img7.jpg" alt="Product photography sample - Clean aesthetic" loading="lazy">
+          <img src="img7.jpg" alt="Product photography sample - Clean aesthetic" loading="lazy" class="portfolio-image">
         </div>
         <div class="portfolio-image-portrait">
-          <img src="img9.jpg" alt="Branding photography example - Color grading" loading="lazy">
+          <img src="img9.jpg" alt="Branding photography example - Color grading" loading="lazy" class="portfolio-image">
         </div>
       </div>
       
@@ -661,7 +710,7 @@
         </div>
         
         <div class="portfolio-landscape-image">
-          <img src="img5.jpg" alt="Landscape photography example - Kerala scenery" loading="lazy">
+          <img src="img5.jpg" alt="Landscape photography example - Kerala scenery" loading="lazy" class="portfolio-image">
         </div>
       </div>
     </div>
@@ -670,7 +719,7 @@
   <section class="section" id="founder">
     <div class="about-box" style="display: flex; flex-direction: column; align-items: center;">
       <h2 style="text-align:center; letter-spacing: 3px;">Behind the LENS</h2>
-      <img src="img14.jpg" alt="Sudeer S - Founder of Black and Stone Studio" loading="lazy">
+      <img src="img14.jpg" alt="Sudeer S - Founder of Black and Stone Studio" loading="lazy" class="portfolio-image">
       <h3 style="text-align:center; font-size: 24px; margin-top: 10px;">SUDEER . S</h3>
       <p style="font-size: 17px; text-align: center; margin-top: 15px; line-height: 1.7; max-width: 700px;">
         I am a Freelancing photographer and designer. I work with startups and growing brands to elevate their identity and presence through refined visuals and thoughtful designs. With a significant blend of minimalism, luxury, and subtle storytelling to create brands that feel clear, consistent, and visually strong.
@@ -712,6 +761,12 @@
     <p><strong>BLACK AND STONE</strong></p>
     <p>© <span id="year"></span> Black and Stone. All rights reserved.</p>
   </footer>
+
+  <!-- Image Modal -->
+  <div id="imageModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImage">
+  </div>
 
   <script>
     // ===== DARK/LIGHT MODE TOGGLE =====
@@ -800,6 +855,42 @@
 
     // ===== SET CURRENT YEAR IN FOOTER =====
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ===== IMAGE MODAL FUNCTIONALITY =====
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("modalImage");
+    const closeBtn = document.getElementsByClassName("close")[0];
+
+    // Get all images with class 'gallery-image' or 'portfolio-image'
+    const images = document.querySelectorAll('.gallery-image, .portfolio-image');
+
+    // Add click event to each image
+    images.forEach(img => {
+      img.addEventListener('click', function() {
+        modal.style.display = "block";
+        modalImg.src = this.src;
+        modalImg.alt = this.alt;
+      });
+    });
+
+    // Close modal when clicking the X
+    closeBtn.addEventListener('click', function() {
+      modal.style.display = "none";
+    });
+
+    // Close modal when clicking outside the image
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) {
+        modal.style.display = "none";
+      }
+    });
+
+    // Close modal with ESC key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === "Escape" && modal.style.display === "block") {
+        modal.style.display = "none";
+      }
+    });
   </script>
 </body>
 </html>
